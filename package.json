@@ -1,0 +1,25 @@
+{
+  "name": "eventpulse-live-qa-polls",
+  "version": "1.0.0",
+  "description": "Real-time Live Q&A and Polling Platform for Events",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev:server": "node \"node_modules/tsx/dist/cli.mjs\" watch server/src/index.ts",
+    "dev:client": "node \"node_modules/vite/bin/vite.js\" client",
+    "dev": "node \"node_modules/concurrently/dist/bin/concurrently.js\" --names \"server,client\" --prefix-colors \"blue,green\" \"npm run dev:server\" \"npm run dev:client\"",
+    "build:server": "node \"node_modules/typescript/bin/tsc\" -p server",
+    "build:client": "node \"node_modules/vite/bin/vite.js\" build client",
+    "build": "npm run build:client",
+    "start": "node \"node_modules/tsx/dist/cli.mjs\" server/src/index.ts",
+    "seed": "node \"node_modules/tsx/dist/cli.mjs\" server/src/seed.ts",
+    "test": "node \"node_modules/vitest/vitest.mjs\" run server/tests/api.test.ts"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
